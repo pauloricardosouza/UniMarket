@@ -2,7 +2,7 @@
             <!-- Encerramento da seção principal -->
         </section>
         <!-- Rodapé -->
-        <footer class="py-5 bg-dark">
+        <footer class="py-2 bg-dark fixed-bottom">
             <div class="container"><p class="m-0 text-center text-white">Sistema Web Desenvolvido no curso Técnico em Informática para Internet do IFPR campus Telêmaco Borba &copy <?php echo date("Y") ?> </p></div>
         </footer>
         <!-- Bootstrap core JS-->
