@@ -29,6 +29,18 @@
             else{
                 //Se o $_POST["dataNascimentoUsuario"] não estiver vazio, é filtrado e armazenado na variável PHP
                 $dataNascimentoUsuario = filtrar_entrada($_POST["dataNascimentoUsuario"]);
+
+                //Utiliza a função strlen() para verificar o comprimento da string $dataNascimentoUsuario (string length)
+                if(strlen($dataNascimentoUsuario) == 10){
+                    //Aplicar a função substr() para gerar substrings e armazenar dia, mês e ano de nascimento
+                    $diaNascimentoUsuario = substr($dataNascimentoUsuario, 8, 2);
+                    $mesNascimentoUsuario = substr($dataNascimentoUsuario, 5, 2);
+                    $anoNascimentoUsuario = substr($dataNascimentoUsuario, 0, 4);
+                }
+                else{
+                    echo "<div class='alert alert-warning text-center'><strong>DATA</strong> inválida!</div>";
+                    $erroPreenchimento = true;
+                }
             }
 
             //Validação do campo cidadeUsuario
@@ -61,7 +73,8 @@
             }
             else{
                 //Se o $_POST["senhaUsuario"] não estiver vazio, é filtrado e armazenado na variável PHP
-                $senhaUsuario = filtrar_entrada($_POST["senhaUsuario"]);
+                //Usa a função md5() para criptografar a senha do usuário
+                $senhaUsuario = md5(filtrar_entrada($_POST["senhaUsuario"]));
             }
 
             //Validação do campo confirmarSenhaUsuario
@@ -72,7 +85,48 @@
             }
             else{
                 //Se o $_POST["confirmarSenhaUsuario"] não estiver vazio, é filtrado e armazenado na variável PHP
-                $confirmarSenhaUsuario = filtrar_entrada($_POST["confirmarSenhaUsuario"]);
+                $confirmarSenhaUsuario = md5(filtrar_entrada($_POST["confirmarSenhaUsuario"]));
+
+                //Compara se as senhas são diferentes
+                if($senhaUsuario != $confirmarSenhaUsuario){
+                    echo "<div class='alert alert-warning text-center'>As <strong>SENHAS</strong> informadas não são iguais!</div>";
+                    $erroPreenchimento = true;
+                }
+            }
+
+            //Verifica se não há erro de preenchimento
+            if(!$erroPreenchimento){
+                echo "<div class='alert alert-success text-center'>O cadastro do <strong>USUÁRIO</strong> foi efetuado com sucesso!</div>";
+                echo "
+                    <div class='container mb-3 mt-3'>
+                        <table class='table'>
+                            <tr>
+                                <th>NOME</th>
+                                <td>$nomeUsuario</td>
+                            </tr>
+                            <tr>
+                                <th>DATA DE NASCIMENTO</th>
+                                <td>$diaNascimentoUsuario/$mesNascimentoUsuario/$anoNascimentoUsuario</td>
+                            </tr>
+                            <tr>
+                                <th>CIDADE</th>
+                                <td>$cidadeUsuario</td>
+                            </tr>
+                            <tr>
+                                <th>EMAIL</th>
+                                <td>$emailUsuario</td>
+                            </tr>
+                            <tr>
+                                <th>SENHA</th>
+                                <td>$senhaUsuario</td>
+                            </tr>
+                            <tr>
+                                <th>CONFIRMAR SENHA</th>
+                                <td>$confirmarSenhaUsuario</td>
+                            </tr>
+                        </table>
+                    </div>
+                ";
             }
 
         }
