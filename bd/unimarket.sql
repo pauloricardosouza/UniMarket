@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 22/04/2026 às 22:54
+-- Tempo de geração: 29/04/2026 às 22:49
 -- Versão do servidor: 8.0.41
 -- Versão do PHP: 8.2.12
 
@@ -34,15 +34,17 @@ CREATE TABLE `usuarios` (
   `dataNascimentoUsuario` date NOT NULL,
   `cidadeUsuario` varchar(30) NOT NULL,
   `emailUsuario` varchar(50) NOT NULL,
-  `senhaUsuario` varchar(100) NOT NULL
+  `senhaUsuario` varchar(100) NOT NULL,
+  `nivelUsuario` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Despejando dados para a tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`idUsuario`, `fotoUsuario`, `nomeUsuario`, `dataNascimentoUsuario`, `cidadeUsuario`, `emailUsuario`, `senhaUsuario`) VALUES
-(1, 'assets/img/woman.jpg', 'Ana Maria Nascimento', '2026-04-22', 'Telêmaco Borba', 'anamaria@gmail.com', 'e10adc3949ba59abbe56e057f20f883e');
+INSERT INTO `usuarios` (`idUsuario`, `fotoUsuario`, `nomeUsuario`, `dataNascimentoUsuario`, `cidadeUsuario`, `emailUsuario`, `senhaUsuario`, `nivelUsuario`) VALUES
+(1, 'assets/img/woman.jpg', 'Administrador Admin', '2026-04-22', 'Telêmaco Borba', 'administrador@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'administrador'),
+(2, 'assets/img/people01.jpg', 'Usuário Comum', '2026-04-07', 'Telêmaco Borba', 'usuario@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'usuario');
 
 --
 -- Índices para tabelas despejadas
@@ -62,7 +64,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idUsuario` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idUsuario` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
