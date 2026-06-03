@@ -1,3 +1,20 @@
+<?php
+    error_reporting(0); //Desabilita alertas de erros de execução
+    session_start(); //Inicia sessão
+
+    //Verifica se há sessão ativa
+    if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
+        //Armazena em variáveis PHP os dados das variáveis de Sessão 
+        $idUsuario    = $_SESSION['idUsuario'];
+        $nomeUsuario  = $_SESSION['nomeUsuario'];
+        $emailUsuario = $_SESSION['emailUsuario'];
+        $nivelUsuario = $_SESSION['nivelUsuario'];
+
+        $nomeCompleto = explode(' ', $nomeUsuario); //Usa a função explode para fragmentar o nome do usuário
+        $primeiroNome = $nomeCompleto[0]; //Armazena na primeira posição do array o primeiro fragmento do nome
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -37,7 +54,6 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Sobre</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Loja</a>
@@ -49,15 +65,16 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">
-                            <i class="bi-cart-fill me-1"></i>
-                            Carrinho
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                        </button>
-                    </form>
                     <ul class="navbar-nav mb2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link" href="formLogin.php">Login</a></li>
+                        <?php
+                            //Verifica se há sessão ativa
+                            if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
+                                echo "SAIR";
+                            }
+                            else{
+                                echo "<li class='nav-item'><a class='nav-link' href='formLogin.php'>Login</a></li>";
+                            }   
+                        ?>
                     </ul>
                 </div>
             </div>

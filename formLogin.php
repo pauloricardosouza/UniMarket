@@ -1,5 +1,18 @@
 <?php include "header.php" ?>
 
+    <?php
+
+        //Verifica se há alguma passagem de parâmetro via método GET chamada 'erroLogin'
+        if(isset($_GET['erroLogin'])){
+            $erroLogin = $_GET['erroLogin'];
+
+            if($erroLogin == 'dadosInvalidos'){
+                echo "<div class= 'alert alert-warning text-center'>EMAIL ou SENHA inválidos!</div>";
+            }
+        }
+
+    ?>
+
     <div class="d-flex justify-content-center mb-3">
         <h2>Acessar o Sistema:</h2>
     </div>
