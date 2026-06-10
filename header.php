@@ -55,21 +55,44 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link" href="#!">Sobre</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Loja</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">Todos os Produtos</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">Itens Populares</a></li>
-                                <li><a class="dropdown-item" href="#!">Novidades</a></li>
-                            </ul>
-                        </li>
                     </ul>
                     <ul class="navbar-nav mb2 mb-lg-0 ms-lg-4">
                         <?php
                             //Verifica se há sessão ativa
                             if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
-                                echo "SAIR";
+                                if($nivelUsuario == 'administrador'){
+                                    echo "
+                                        <li class='nav-item dropdown'>
+                                            <a class='nav-link dropdown-toggle' id='navbarDropdown' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'><i class='bi bi-person-circle'></i> $primeiroNome</a>
+                                            <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                                                <li><a class='dropdown-item' href='#formAnuncio.php'>Criar Anúncio</a></li>
+                                                <li><hr class='dropdown-divider' /></li>
+                                                <li><a class='dropdown-item' href='#!'>Meus Anúncios</a></li>
+                                                <li><a class='dropdown-item' href='#!'>Minhas Compras</a></li>
+                                                <li><hr class='dropdown-divider' /></li>
+                                                <li><a class='dropdown-item' href='#!'>Gerenciar Anúncios</a></li>
+                                                <li><a class='dropdown-item' href='#!'>Gerenciar Usuários</a></li>
+                                                <li><hr class='dropdown-divider' /></li>
+                                                <li><a class='dropdown-item' href='logout.php' title='Sair do Sistema'>Sair</a></li>
+                                            </ul>
+                                        </li>
+                                    ";
+                                }
+                                else{
+                                    echo "
+                                        <li class='nav-item dropdown'>
+                                            <a class='nav-link dropdown-toggle' id='navbarDropdown' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'><i class='bi bi-person-circle'></i> $primeiroNome</a>
+                                            <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                                                <li><a class='dropdown-item' href='#formAnuncio.php'>Criar Anúncio</a></li>
+                                                <li><hr class='dropdown-divider' /></li>
+                                                <li><a class='dropdown-item' href='#!'>Meus Anúncios</a></li>
+                                                <li><a class='dropdown-item' href='#!'>Minhas Compras</a></li>
+                                                <li><hr class='dropdown-divider' /></li>
+                                                <li><a class='dropdown-item' href='logout.php' title='Sair do Sistema'>Sair</a></li>
+                                            </ul>
+                                        </li>
+                                    ";
+                                }
                             }
                             else{
                                 echo "<li class='nav-item'><a class='nav-link' href='formLogin.php'>Login</a></li>";

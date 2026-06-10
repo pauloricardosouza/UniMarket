@@ -28,7 +28,7 @@
             </div>
 
             <div class="form-floating mt-3 mb-3">
-                <input type="password" name="senhaUsuario" id="senhaUsuario" placeholder="Senha" class="form-control" minlength="6" maxlength="8" required>
+                <input type="password" name="senhaUsuario" id="senhaUsuario" placeholder="Senha" class="form-control" minlength="3" maxlength="8" required>
                 <label for="senhaUsuario">Senha</label>
                 <div class="valid-feedback"></div>
                 <div class="invalid-feedback"></div>

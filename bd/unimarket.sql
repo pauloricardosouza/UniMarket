@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 03/06/2026 às 19:02
+-- Tempo de geração: 10/06/2026 às 22:43
 -- Versão do servidor: 8.0.41
 -- Versão do PHP: 8.2.12
 
@@ -43,8 +43,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`idUsuario`, `fotoUsuario`, `nomeUsuario`, `dataNascimentoUsuario`, `cidadeUsuario`, `emailUsuario`, `senhaUsuario`, `nivelUsuario`) VALUES
-(1, 'assets/img/woman.jpg', 'Administrador Admin', '2026-04-22', 'Telêmaco Borba', 'administrador@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'administrador'),
-(2, 'assets/img/people01.jpg', 'Usuário Comum', '2026-04-07', 'Telêmaco Borba', 'usuario@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'usuario');
+(1, 'assets/img/woman.jpg', 'Administrador Admin', '2026-04-22', 'Telêmaco Borba', 'administrador@gmail.com', '202cb962ac59075b964b07152d234b70', 'administrador'),
+(2, 'assets/img/people01.jpg', 'Usuário Comum', '2026-04-07', 'Telêmaco Borba', 'usuario@gmail.com', '202cb962ac59075b964b07152d234b70', 'usuario'),
+(3, 'assets/img/Paulinho.jpeg', 'Paulo Ricardo de Souza Silva', '2008-06-03', 'Telêmaco Borba', 'paulo.silva@ifpr.edu.br', '202cb962ac59075b964b07152d234b70', 'usuario');
 
 --
 -- Índices para tabelas despejadas
@@ -64,7 +65,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idUsuario` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idUsuario` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
