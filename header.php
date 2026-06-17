@@ -71,7 +71,7 @@
                                                 <li><a class='dropdown-item' href='#!'>Minhas Compras</a></li>
                                                 <li><hr class='dropdown-divider' /></li>
                                                 <li><a class='dropdown-item' href='#!'>Gerenciar Anúncios</a></li>
-                                                <li><a class='dropdown-item' href='#!'>Gerenciar Usuários</a></li>
+                                                <li><a class='dropdown-item' href='listarUsuarios.php'>Gerenciar Usuários</a></li>
                                                 <li><hr class='dropdown-divider' /></li>
                                                 <li><a class='dropdown-item' href='logout.php' title='Sair do Sistema'>Sair</a></li>
                                             </ul>
