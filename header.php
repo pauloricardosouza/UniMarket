@@ -2,6 +2,9 @@
     error_reporting(0); //Desabilita alertas de erros de execução
     session_start(); //Inicia sessão
 
+    //Configura o fuso horário para América/São Paulo
+    date_default_timezone_set('America/Sao_Paulo');
+
     //Verifica se há sessão ativa
     if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
         //Armazena em variáveis PHP os dados das variáveis de Sessão 
@@ -65,7 +68,7 @@
                                         <li class='nav-item dropdown'>
                                             <a class='nav-link dropdown-toggle' id='navbarDropdown' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'><i class='bi bi-person-circle'></i> $primeiroNome</a>
                                             <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>
-                                                <li><a class='dropdown-item' href='#formAnuncio.php'>Criar Anúncio</a></li>
+                                                <li><a class='dropdown-item' href='formAnuncio.php'>Criar Anúncio</a></li>
                                                 <li><hr class='dropdown-divider' /></li>
                                                 <li><a class='dropdown-item' href='#!'>Meus Anúncios</a></li>
                                                 <li><a class='dropdown-item' href='#!'>Minhas Compras</a></li>
@@ -83,7 +86,7 @@
                                         <li class='nav-item dropdown'>
                                             <a class='nav-link dropdown-toggle' id='navbarDropdown' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'><i class='bi bi-person-circle'></i> $primeiroNome</a>
                                             <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>
-                                                <li><a class='dropdown-item' href='#formAnuncio.php'>Criar Anúncio</a></li>
+                                                <li><a class='dropdown-item' href='formAnuncio.php'>Criar Anúncio</a></li>
                                                 <li><hr class='dropdown-divider' /></li>
                                                 <li><a class='dropdown-item' href='#!'>Meus Anúncios</a></li>
                                                 <li><a class='dropdown-item' href='#!'>Minhas Compras</a></li>
