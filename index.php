@@ -1,178 +1,65 @@
 <?php include "header.php" ?>
+<?php include "conexaoBD.php" ?>
 
-    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
-        <div class="col mb-5">
-            <form action="index.php" method="get">
-                <select class="form-select" id="filtrarAnuncios" name="filtrarAnuncios">
-                    <option value='todos' selected>Exibir todos os Anúncios</option>
-                    <option value='disponivel'>Exibir apenas Anúncios Disponíveis</option>
-                    <option value='finalizado'>Exibir apenas Anúncios Finalizados</option>
-                </select>
-            </form>
-            <br>
-        </div>
-    </div>
+<?php
+    // 1. Lê o filtro escolhido no formulário. Se nenhum filtro for enviado, exibe todos os anúncios.
+    $filtro = $_GET['filtrarAnuncios'] ?? 'todos';
+    $where  = "";
 
-    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-        <div class="col mb-5">
-            <div class="card h-100">
-                <!-- Foto do Anúncio -->
-                <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                <!-- Detalhes do Anúncio -->
-                <div class="card-body p-4">
-                    <div class="text-center">
-                        <!-- Nome do Anúncio -->
-                        <h5 class="fw-bolder">Nome do Anúncio</h5>
-                        <!-- Preço do Anúncio -->
-                        R$ Valor do Anúncio
-                    </div>
-                </div>
-                <!-- Ações -->
-                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#"><i class="bi bi-eye"></i> Visualizar Anúncio</a></div>
-                </div>
+    // Define a condição da consulta usando valores fixos.
+    if ($filtro === 'disponivel') {
+        $where = "WHERE statusAnuncio = 'disponivel' ";
+    }
+    elseif ($filtro === 'finalizado') {
+        $where = "WHERE statusAnuncio = 'finalizado' ";
+    }
+    else {
+        $filtro = 'todos';
+    }
+
+    // 2. Consulta os anúncios, do mais recente para o mais antigo.
+    mysqli_set_charset($conn, 'utf8mb4');
+
+    $listarAnuncios = "SELECT idAnuncio, fotoAnuncio, tituloAnuncio, valorAnuncio, statusAnuncio
+                       FROM Anuncios
+                       $where
+                       ORDER BY dataAnuncio DESC, horaAnuncio DESC, idAnuncio DESC
+                      ";
+
+    $resultadoAnuncios = mysqli_query($conn, $listarAnuncios);
+
+    // 3. Define qual opção aparecerá selecionada no formulário.
+    $selecionadoTodos      = "";
+    $selecionadoDisponivel = "";
+    $selecionadoFinalizado = "";
+
+    if ($filtro === 'disponivel') {
+        $selecionadoDisponivel = "selected";
+    }
+    elseif ($filtro === 'finalizado') {
+        $selecionadoFinalizado = "selected";
+    }
+    else {
+        $selecionadoTodos = "selected";
+    }
+
+    // 4. Exibe o formulário de filtro.
+    echo "
+        <div class='row justify-content-center mb-4'>
+            <div class='col-md-6'>
+                <form action='index.php' method='get'>
+                    <select class='form-select' id='filtrarAnuncios' name='filtrarAnuncios'>
+                        <option value='todos' $selecionadoTodos>Exibir todos os Anúncios</option>
+                        <option value='disponivel' $selecionadoDisponivel>Exibir apenas Anúncios Disponíveis</option>
+                        <option value='finalizado' $selecionadoFinalizado>Exibir apenas Anúncios Finalizados</option>
+                    </select>
+
+                    <button type='submit' class='btn btn-outline-dark mt-2'><i class='bi bi-filter'></i> Filtrar</button>
+                </form>
             </div>
         </div>
-        <div class="col mb-5">
-            <div class="card h-100">
-                <!-- Efeito de Anúncio Finalizado -->
-                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Anúncio Finalizado</div>
-                <!-- Foto do Anúncio -->
-                <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                <!-- Detalhes do Anúncio -->
-                <div class="card-body p-4">
-                    <div class="text-center">
-                        <!-- Nome do Anúncio -->
-                        <h5 class="fw-bolder">Nome do Anúncio</h5>
-                        <!-- Preço do Anúncio -->
-                        R$ Valor do Anúncio
-                    </div>
-                </div>
-                <!-- Ações -->
-                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Visualizar Anúncio</a></div>
-                </div>
-            </div>
-        </div>
-        <div class="col mb-5">
-            <div class="card h-100">
-                <!-- Foto do Anúncio -->
-                <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                <!-- Detalhes do Anúncio -->
-                <div class="card-body p-4">
-                    <div class="text-center">
-                        <!-- Nome do Anúncio -->
-                        <h5 class="fw-bolder">Nome do Anúncio</h5>
-                        <!-- Preço do Anúncio -->
-                        R$ Valor do Anúncio
-                    </div>
-                </div>
-                <!-- Ações -->
-                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#"><i class="bi bi-eye"></i> Visualizar Anúncio</a></div>
-                </div>
-            </div>
-        </div>
-        <div class="col mb-5">
-            <div class="card h-100">
-                <!-- Efeito de Anúncio Finalizado -->
-                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Anúncio Finalizado</div>
-                <!-- Foto do Anúncio -->
-                <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                <!-- Detalhes do Anúncio -->
-                <div class="card-body p-4">
-                    <div class="text-center">
-                        <!-- Nome do Anúncio -->
-                        <h5 class="fw-bolder">Nome do Anúncio</h5>
-                        <!-- Preço do Anúncio -->
-                        R$ Valor do Anúncio
-                    </div>
-                </div>
-                <!-- Ações -->
-                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Visualizar Anúncio</a></div>
-                </div>
-            </div>
-        </div>
-        <div class="col mb-5">
-            <div class="card h-100">
-                <!-- Foto do Anúncio -->
-                <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                <!-- Detalhes do Anúncio -->
-                <div class="card-body p-4">
-                    <div class="text-center">
-                        <!-- Nome do Anúncio -->
-                        <h5 class="fw-bolder">Nome do Anúncio</h5>
-                        <!-- Preço do Anúncio -->
-                        R$ Valor do Anúncio
-                    </div>
-                </div>
-                <!-- Ações -->
-                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#"><i class="bi bi-eye"></i> Visualizar Anúncio</a></div>
-                </div>
-            </div>
-        </div>
-        <div class="col mb-5">
-            <div class="card h-100">
-                <!-- Efeito de Anúncio Finalizado -->
-                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Anúncio Finalizado</div>
-                <!-- Foto do Anúncio -->
-                <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                <!-- Detalhes do Anúncio -->
-                <div class="card-body p-4">
-                    <div class="text-center">
-                        <!-- Nome do Anúncio -->
-                        <h5 class="fw-bolder">Nome do Anúncio</h5>
-                        <!-- Preço do Anúncio -->
-                        R$ Valor do Anúncio
-                    </div>
-                </div>
-                <!-- Ações -->
-                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Visualizar Anúncio</a></div>
-                </div>
-            </div>
-        </div>
-        <div class="col mb-5">
-            <div class="card h-100">
-                <!-- Foto do Anúncio -->
-                <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                <!-- Detalhes do Anúncio -->
-                <div class="card-body p-4">
-                    <div class="text-center">
-                        <!-- Nome do Anúncio -->
-                        <h5 class="fw-bolder">Nome do Anúncio</h5>
-                        <!-- Preço do Anúncio -->
-                        R$ Valor do Anúncio
-                    </div>
-                </div>
-                <!-- Ações -->
-                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#"><i class="bi bi-eye"></i> Visualizar Anúncio</a></div>
-                </div>
-            </div>
-        </div>
-        <div class="col mb-5">
-            <div class="card h-100">
-                <!-- Foto do Anúncio -->
-                <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                <!-- Detalhes do Anúncio -->
-                <div class="card-body p-4">
-                    <div class="text-center">
-                        <!-- Nome do Anúncio -->
-                        <h5 class="fw-bolder">Nome do Anúncio</h5>
-                        <!-- Preço do Anúncio -->
-                        R$ Valor do Anúncio
-                    </div>
-                </div>
-                <!-- Ações -->
-                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Visualizar Anúncio</a></div>
-                </div>
-            </div>
-        </div>
-        
-    </div>
+    ";
+
+?>
             
 <?php include "footer.php" ?>
