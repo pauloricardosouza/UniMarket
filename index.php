@@ -60,6 +60,63 @@
         </div>
     ";
 
+    // 5. Verifica se a consulta não retornou anúncios.
+    if(mysqli_num_rows($resultadoAnuncios) === 0){
+        echo "<div class='alert alert-info text-center'>Nenhum anúncio encontrado.</div>";
+    }
+
+    //Abre uma linha que organizará os cards.
+    echo "<div class='row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center'>";
+
+        // 6. Algoritmo que percorre os resultados. Cada registro gera um card.
+        while($anuncio = mysqli_fetch_assoc($resultadoAnuncios)) {
+            //Converte caracteres especiais para exibí-los como texto no HTML.
+            $fotoAnuncio   = htmlspecialchars($anuncio['fotoAnuncio'], ENT_QUOTES, 'UTF-8', false);
+            $tituloAnuncio = htmlspecialchars($anuncio['tituloAnuncio'], ENT_QUOTES, 'UTF-8', false);
+            //Formata o preço no padrão brasileiro. Exemplo: R$ 1.250,00
+            $valorAnuncio  = number_format($anuncio['valorAnuncio'], 2, ',', '.');
+
+            echo "
+                <div class='col mb-5'>
+                    <div class='card h-100'>
+            ";
+
+            //Exibe o aviso apenas em anúncios finalizados.
+            if($anuncio['statusAnuncio'] === 'finalizado'){
+                echo "<div class='badge bg-dark text-white position-absolute' style='top: 0.5rem; right: 0.5rem'>Anúncio Finalizado</div>";
+            }
+
+            //Exibe o card com foto, título, valor e botão "Visualizar Anúncio".
+            echo "
+                <img class='card-img-top' src='$fotoAnuncio' title='Foto de $tituloAnuncio' style='height: 200px; object-fit: cover;'>
+                <div class='card-body p-4'>
+                    <div class='text-center'>
+                        <h5 class='fw-bolder'>$tituloAnuncio</h5>
+                        R$ $valorAnuncio
+                    </div>
+                </div>
+                <div class='card-footer p-4 pt-0 border-top-0 bg-transparent'>
+                    <div class='text-center'>
+                        <button class='btn btn-outline-dark mt-auto' type='button' title='Ver mais detalhes do anúncio'>
+                            <i class='bi bi-eye'></i> Visualizar Anúncio
+                        </button>
+                    </div>
+                </div>
+            ";
+
+            echo "
+                    </div>
+                </div>
+            ";
+
+        }
+
+    //Fecha a linha dos cards.
+    echo "</div>";
+
+    //Encerra a conexão com o Banco de Dados
+    mysqli_close($conn);
+
 ?>
             
 <?php include "footer.php" ?>

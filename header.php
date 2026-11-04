@@ -25,7 +25,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Unimarket - Tudo o que você busca, a um clique de distância.</title>
+        <title>Unimarket - Unindo pessoas, produtos e possibilidades.</title>
         <!-- Favicon -->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- CDN para utilizar Bootstrap icons-->
@@ -44,6 +44,7 @@
                 font-family: "Audiowide", sans-serif;
                 font-weight: 400;
                 font-style: normal;
+                font-size: 1.5rem;
             }
         </style>
     </head>
@@ -110,7 +111,7 @@
                     <a href="index.php" title="Retornar para a Página Inicial">
                         <img src="assets/img/Logo_Unimarket_Branco.png" style="width:150px" class="pb-2">
                     </a>
-                    <p class="lead fw-normal text-white mb-0 audiowide-regular">Tudo o que você busca, a um clique de distância.</p>
+                    <p class="lead fw-normal text-white mb-0 audiowide-regular">Unindo pessoas, produtos e possibilidades.</p>
                 </div>
             </div>
         </header>
