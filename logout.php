@@ -1,8 +1,8 @@
 <?php
-    session_start(); //Da início à sessão
-    session_unset(); //Apaga os registros da sessão
-    session_destroy(); //Destrói a sessão
+    session_start(); //Inicia a sessão
+    session_unset(); //Apaga os dados da Sessão
+    session_destroy(); //Destroí a Sessão
 
-    header("Location: formLogin.php"); //Redireciona o usuário para o formulário de Login
+    header("Location: formLogin.php");
     exit();
 ?>

@@ -1,12 +1,12 @@
 <?php include "header.php" ?>
 
-    <div class="d-flex justify-content-center mb-3">
+    <div class="d-flex justify-content-center">
         <h2>Cadastro de Anúncio</h2>
     </div>
 
-    <div class="d-flex justify-content-center mb-3">
+    <div class="d-flex justify-content-center">
         <form action="actionAnuncio.php" method="POST" class="was-validated" enctype="multipart/form-data">
-
+            
             <div class="form-floating mt-3 mb-3">
                 <input type="file" name="fotoAnuncio" id="fotoAnuncio" placeholder="Foto" class="form-control">
                 <label for="fotoAnuncio">Foto</label>
@@ -15,14 +15,14 @@
             </div>
 
             <div class="form-floating mt-3 mb-3">
-                <input type="text" name="tituloAnuncio" id="tituloAnuncio" placeholder="Insira o título do Anúncio" class="form-control">
+                <input type="text" name="tituloAnuncio" id="tituloAnuncio" placeholder="Informe o título do seu anúncio" class="form-control">
                 <label for="tituloAnuncio">Título do Anúncio</label>
                 <div class="valid-feedback"></div>
                 <div class="invalid-feedback"></div>
             </div>
 
             <div class="form-floating mt-3 mb-3">
-                <textarea name="descricaoAnuncio" id="descricaoAnuncio" placeholder="Informe uma breve descrição detalhando o seu anúncio" class="form-control"></textarea>
+                <textarea name="descricaoAnuncio" id="descricaoAnuncio" placeholder="Adicione informações detalhadas do anúncio" class="form-control"></textarea>
                 <label for="descricaoAnuncio">Descrição do Anúncio</label>
                 <div class="valid-feedback"></div>
                 <div class="invalid-feedback"></div>
@@ -52,7 +52,6 @@
             <button type="submit" class="btn btn-outline-dark">Criar Anúncio</button>
 
         </form>
-
     </div>
 
 <?php include "footer.php" ?>
