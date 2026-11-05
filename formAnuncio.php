@@ -8,28 +8,29 @@
         <form action="actionAnuncio.php" method="POST" class="was-validated" enctype="multipart/form-data">
             
             <div class="form-floating mt-3 mb-3">
-                <input type="file" name="fotoAnuncio" id="fotoAnuncio" placeholder="Foto" class="form-control">
+                <input type="file" name="fotoAnuncio" id="fotoAnuncio" placeholder="Foto" class="form-control" required>
                 <label for="fotoAnuncio">Foto</label>
                 <div class="valid-feedback"></div>
                 <div class="invalid-feedback"></div>
             </div>
 
             <div class="form-floating mt-3 mb-3">
-                <input type="text" name="tituloAnuncio" id="tituloAnuncio" placeholder="Informe o título do seu anúncio" class="form-control">
+                <input type="text" name="tituloAnuncio" id="tituloAnuncio" placeholder="Informe o título do seu anúncio" class="form-control" required>
                 <label for="tituloAnuncio">Título do Anúncio</label>
                 <div class="valid-feedback"></div>
                 <div class="invalid-feedback"></div>
             </div>
 
             <div class="form-floating mt-3 mb-3">
-                <textarea name="descricaoAnuncio" id="descricaoAnuncio" placeholder="Adicione informações detalhadas do anúncio" class="form-control"></textarea>
+                <textarea name="descricaoAnuncio" id="descricaoAnuncio" placeholder="Adicione informações detalhadas do anúncio" class="form-control" required></textarea>
                 <label for="descricaoAnuncio">Descrição do Anúncio</label>
                 <div class="valid-feedback"></div>
                 <div class="invalid-feedback"></div>
             </div>
 
             <div class="form-floating mt-3 mb-3">
-                <select name="categoriaAnuncio" id="categoriaAnuncio" placeholder="Selecione uma Categoria" class="form-control">
+                <select name="categoriaAnuncio" id="categoriaAnuncio" class="form-control" required>
+                    <option value="">Selecione uma Categoria</option>
                     <option value="Alimentos">Alimentos</option>
                     <option value="Eletrônicos">Eletrônicos</option>
                     <option value="Imóveis">Imóveis</option>
@@ -43,10 +44,14 @@
             </div>
 
             <div class="form-floating mt-3 mb-3">
-                <input type="text" name="valorAnuncio" id="valorAnuncio" placeholder="Informe o valor do anúncio em R$" class="form-control">
+                <!-- Exibe o valor formatado em reais. -->
+                <input type="text" id="valorAnuncio" placeholder="Informe o valor do anúncio em R$" class="form-control" inputmode="numeric" required>
                 <label for="valorAnuncio">Valor do Anúncio</label>
                 <div class="valid-feedback"></div>
-                <div class="invalid-feedback"></div>
+                <div class="invalid-feedback">Informe o valor do anúncio.</div>
+
+                <!-- Envia ao PHP o valor numérico, sem R$ e sem separador de milhar. -->
+                <input type="hidden" name="valorAnuncio" id="valorAnuncioNumerico">
             </div>
 
             <button type="submit" class="btn btn-outline-dark">Criar Anúncio</button>
