@@ -71,6 +71,7 @@
         // 6. Algoritmo que percorre os resultados. Cada registro gera um card.
         while($anuncio = mysqli_fetch_assoc($resultadoAnuncios)) {
             //Converte caracteres especiais para exibí-los como texto no HTML.
+            $idAnuncio     = (int) $anuncio['idAnuncio'];
             $fotoAnuncio   = htmlspecialchars($anuncio['fotoAnuncio'], ENT_QUOTES, 'UTF-8', false);
             $tituloAnuncio = htmlspecialchars($anuncio['tituloAnuncio'], ENT_QUOTES, 'UTF-8', false);
             //Formata o preço no padrão brasileiro. Exemplo: R$ 1.250,00
@@ -97,9 +98,9 @@
                 </div>
                 <div class='card-footer p-4 pt-0 border-top-0 bg-transparent'>
                     <div class='text-center'>
-                        <button class='btn btn-outline-dark mt-auto' type='button' title='Ver mais detalhes do anúncio'>
+                        <a class='btn btn-outline-dark mt-auto' href='visualizarAnuncio.php?idAnuncio=$idAnuncio' title='Ver mais detalhes do anúncio'>
                             <i class='bi bi-eye'></i> Visualizar Anúncio
-                        </button>
+                        </a>
                     </div>
                 </div>
             ";
@@ -120,3 +121,4 @@
 ?>
             
 <?php include "footer.php" ?>
+ 
